@@ -1,0 +1,58 @@
+model:
+  name: Qwen/Qwen2.5-1.5B-Instruct
+  max_seq_length: 1024
+  attn_implementation: sdpa
+  use_qlora: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+train:
+  output_dir: outputs/vulgar-en-qlora
+  num_train_epochs: 3
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 2.0e-4
+  warmup_ratio: 0.05
+  weight_decay: 0.01
+  lr_scheduler_type: cosine
+  logging_steps: 10
+  save_strategy: epoch
+  eval_strategy: epoch
+  save_total_limit: 2
+  seed: 42
+  gradient_checkpointing: true
+  optim: paged_adamw_8bit
+  max_grad_norm: 1.0
+  dataloader_num_workers: 4
+  report_to: none
+
+data:
+  processed_dir: data/processed
+  train_file: data/processed/train.jsonl
+  eval_file: data/processed/eval.jsonl
+  test_file: data/processed/test.jsonl
+  labeled_file: data/raw/labeled.jsonl
+  include_seed: true
+  val_ratio: 0.1
+  test_ratio: 0.1
+  seed: 42
+
+infer:
+  adapter_dir: outputs/vulgar-en-qlora
+  max_new_tokens: 128
+  temperature: 0.0
+  top_p: 1.0

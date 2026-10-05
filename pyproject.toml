@@ -1,0 +1,38 @@
+[project]
+name = "vulgar-en-finetune"
+version = "0.1.0"
+description = "QLoRA fine-tuning for English vulgar-language detection on NVIDIA GPUs"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.4.0",
+  "transformers>=4.45.0",
+  "datasets>=3.0.0",
+  "accelerate>=1.0.0",
+  "peft>=0.13.0",
+  "trl>=0.12.0",
+  "bitsandbytes>=0.44.0",
+  "sentencepiece>=0.2.0",
+  "protobuf>=4.25.0",
+  "safetensors>=0.4.0",
+  "pyyaml>=6.0.2",
+  "scikit-learn>=1.5.0",
+  "tqdm>=4.66.0",
+  "nvidia-ml-py>=12.560.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["vulgar_en*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

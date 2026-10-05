@@ -1,0 +1,13 @@
+.git
+.venv
+venv
+__pycache__
+.pytest_cache
+outputs
+wandb
+hf_cache
+data/processed
+*.egg-info
+dist
+build
+.DS_Store
