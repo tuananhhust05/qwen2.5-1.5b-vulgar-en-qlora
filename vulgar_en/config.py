@@ -46,6 +46,7 @@ class TrainConfig:
     max_grad_norm: float
     dataloader_num_workers: int
     report_to: str
+    group_by_length: bool = False
 
 
 @dataclass(frozen=True)
@@ -127,6 +128,7 @@ def load_config(path: str | Path) -> AppConfig:
             max_grad_norm=float(_require(train, "max_grad_norm")),
             dataloader_num_workers=int(_require(train, "dataloader_num_workers")),
             report_to=str(_require(train, "report_to")),
+            group_by_length=bool(train.get("group_by_length", False)),
         ),
         data=DataConfig(
             processed_dir=str(_require(data, "processed_dir")),

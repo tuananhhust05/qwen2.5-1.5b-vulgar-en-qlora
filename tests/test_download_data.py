@@ -54,3 +54,33 @@ def test_tweet_eval_keeps_clean_only() -> None:
     assert clean is not None
     assert clean[1].is_vulgar is False
     assert offensive is None
+
+
+def test_toxic_spans_hub_format_uses_string_literals() -> None:
+    # heegyu/toxic-spans serialises every structured column as a Python-literal string
+    row = {
+        "text_of_post": "Another clown in favour of more tax in this country. Blows my mind people can be this stupid.",
+        "text": "{'stupid': 0.6666666666666666, 'clown': 0.6666666666666666}",
+        "position": "[8, 9, 10, 11, 12, 86, 87, 88, 89, 90, 91]",
+        "type": "{'insult': 1.0}",
+    }
+    converted = from_toxic_spans_row(row)
+    assert converted is not None
+    _, label = converted
+    assert label.is_vulgar is True
+    assert set(label.vulgar_terms) == {"stupid", "clown"}
+    assert label.severity == "strong"
+
+
+def test_toxic_spans_string_positions_fallback() -> None:
+    row = {
+        "text_of_post": "Sex in prison ought to be interesting for him",
+        "text": "{}",
+        "position": "[0, 1, 2]",
+        "type": "{'profane/obscene': 0.6666666666666666}",
+    }
+    converted = from_toxic_spans_row(row)
+    assert converted is not None
+    _, label = converted
+    assert label.vulgar_terms == ("sex",)
+    assert label.severity == "explicit"

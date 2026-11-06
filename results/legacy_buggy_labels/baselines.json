@@ -1,0 +1,164 @@
+{
+  "train_examples": 29986,
+  "lexicon_terms": 2768,
+  "lexicon": {
+    "examples": 3689,
+    "is_vulgar": {
+      "precision": 0.45815098468271337,
+      "recall": 0.9988073941562313,
+      "f1": 0.6281642602662666,
+      "accuracy": 0.46245595012198426
+    },
+    "severity_macro_f1": 0.1399753171533368,
+    "severity_accuracy": 0.1989699105448631,
+    "vulgar_terms": {
+      "precision": 0.13368045887397673,
+      "recall": 0.7277550401697741,
+      "f1": 0.22587095104796406
+    },
+    "ci95": {
+      "is_vulgar_f1": [
+        0.6120197793837961,
+        0.6446587537091988
+      ],
+      "severity_macro_f1": [
+        0.12935445607902324,
+        0.15213206151920877
+      ],
+      "vulgar_terms_f1": [
+        0.21245969061083328,
+        0.24013624751632134
+      ]
+    },
+    "by_source": {
+      "hatexplain": {
+        "examples": 1857,
+        "is_vulgar": {
+          "precision": 0.6143473570658037,
+          "recall": 1.0,
+          "f1": 0.7611092549281657,
+          "accuracy": 0.6149703823371029
+        },
+        "severity_macro_f1": 0.19536429992596777,
+        "severity_accuracy": 0.37425955842757136,
+        "vulgar_terms": {
+          "precision": 0.2678227360308285,
+          "recall": 0.7912271890172443,
+          "f1": 0.40018629069816675
+        }
+      },
+      "toxic_spans": {
+        "examples": 1010,
+        "is_vulgar": {
+          "precision": 0.5317460317460317,
+          "recall": 0.9962825278810409,
+          "f1": 0.6934023285899095,
+          "accuracy": 0.5306930693069307
+        },
+        "severity_macro_f1": 0.009963768115942028,
+        "severity_accuracy": 0.01089108910891089,
+        "vulgar_terms": {
+          "precision": 0.005900865460267506,
+          "recall": 0.1201923076923077,
+          "f1": 0.011249437528123593
+        }
+      },
+      "tweet_eval_offensive": {
+        "examples": 822,
+        "is_vulgar": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.0340632603406326
+        },
+        "severity_macro_f1": 0.01647058823529412,
+        "severity_accuracy": 0.0340632603406326,
+        "vulgar_terms": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  },
+  "tfidf_lr": {
+    "examples": 3689,
+    "is_vulgar": {
+      "precision": 0.7185266630016492,
+      "recall": 0.7793679189028027,
+      "f1": 0.7477116704805492,
+      "accuracy": 0.7609108159392789
+    },
+    "severity_macro_f1": 0.6476647673324105,
+    "severity_accuracy": 0.6950393060449986,
+    "vulgar_terms": {
+      "precision": 0.21499780893952672,
+      "recall": 0.5949674094285281,
+      "f1": 0.3158572405745785
+    },
+    "ci95": {
+      "is_vulgar_f1": [
+        0.7302977232924693,
+        0.7644468904788112
+      ],
+      "severity_macro_f1": [
+        0.6307711521216525,
+        0.6639458040106694
+      ],
+      "vulgar_terms_f1": [
+        0.2966947238760008,
+        0.33537944246784224
+      ]
+    },
+    "by_source": {
+      "hatexplain": {
+        "examples": 1857,
+        "is_vulgar": {
+          "precision": 0.7831423895253683,
+          "recall": 0.8402107111501317,
+          "f1": 0.8106734434561627,
+          "accuracy": 0.7592891760904685
+        },
+        "severity_macro_f1": 0.47827721333818896,
+        "severity_accuracy": 0.6429725363489499,
+        "vulgar_terms": {
+          "precision": 0.3317608714297967,
+          "recall": 0.6475807801774652,
+          "f1": 0.43874773139745915
+        }
+      },
+      "toxic_spans": {
+        "examples": 1010,
+        "is_vulgar": {
+          "precision": 0.5892255892255892,
+          "recall": 0.6505576208178439,
+          "f1": 0.6183745583038869,
+          "accuracy": 0.5722772277227722
+        },
+        "severity_macro_f1": 0.2810248812139171,
+        "severity_accuracy": 0.5455445544554456,
+        "vulgar_terms": {
+          "precision": 0.008674478770354589,
+          "recall": 0.09134615384615384,
+          "f1": 0.01584433634468381
+        }
+      },
+      "tweet_eval_offensive": {
+        "examples": 822,
+        "is_vulgar": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "accuracy": 0.9963503649635036
+        },
+        "severity_macro_f1": 0.24954296160877515,
+        "severity_accuracy": 0.9963503649635036,
+        "vulgar_terms": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    }
+  }
+}

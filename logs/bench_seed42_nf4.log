@@ -1,0 +1,53 @@
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:45,  7.41it/s]/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+Loading weights:   4%|▍         | 15/338 [00:00<00:04, 75.13it/s]Loading weights:  15%|█▌        | 52/338 [00:00<00:01, 194.74it/s]Loading weights:  26%|██▋       | 89/338 [00:00<00:00, 255.27it/s]Loading weights:  38%|███▊      | 128/338 [00:00<00:00, 300.59it/s]Loading weights:  50%|█████     | 169/338 [00:00<00:00, 335.73it/s]Loading weights:  61%|██████    | 207/338 [00:00<00:00, 344.16it/s]Loading weights:  72%|███████▏  | 244/338 [00:00<00:00, 346.68it/s]Loading weights:  83%|████████▎ | 281/338 [00:00<00:00, 348.43it/s]Loading weights:  96%|█████████▌| 323/338 [00:01<00:00, 368.63it/s]Loading weights: 100%|██████████| 338/338 [00:01<00:00, 307.85it/s]
+/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py:468: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+{
+  "examples": 3743,
+  "is_vulgar": {
+    "precision": 0.8084690553745928,
+    "recall": 0.7295708406819518,
+    "f1": 0.7669962917181706,
+    "accuracy": 0.7985573069730163
+  },
+  "severity_macro_f1": 0.5657034554123506,
+  "severity_accuracy": 0.7493988779054235,
+  "vulgar_terms": {
+    "precision": 0.6480246280143663,
+    "recall": 0.392601802921977,
+    "f1": 0.4889663182346109
+  },
+  "ci95": {
+    "is_vulgar_f1": [
+      0.7495207667731629,
+      0.7824808935920047
+    ],
+    "severity_macro_f1": [
+      0.5370833534467537,
+      0.599612963901941
+    ],
+    "vulgar_terms_f1": [
+      0.46246585664500334,
+      0.5133056316859694
+    ]
+  },
+  "weights": "nf4",
+  "parse_failures": 1,
+  "json_valid_rate": 0.9997328346246327,
+  "throughput": {
+    "batch_size": 32,
+    "examples": 3743,
+    "seconds": 859.5033548420761,
+    "examples_per_second": 4.354840477251812,
+    "peak_vram_gb": 2.8057470321655273,
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "latency": {
+    "batch_size": 1,
+    "requests": 50,
+    "p50_ms": 2182.569180149585,
+    "p95_ms": 3423.6713559366763
+  }
+}
+Wrote results/bench_seed42_nf4.json

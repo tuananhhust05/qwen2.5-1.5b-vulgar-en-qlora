@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import json
 import random
 import urllib.request
@@ -29,7 +30,20 @@ def _clean_text(text: str) -> str:
     return " ".join(str(text).replace("\x00", " ").split())[:MAX_CHARS]
 
 
+def _literal(value: Any) -> Any:
+    """heegyu/toxic-spans stores dicts/lists as Python-literal strings, e.g. "{'stupid': 0.67}"."""
+    if isinstance(value, str):
+        stripped = value.strip()
+        if stripped[:1] in "{[(":
+            try:
+                return ast.literal_eval(stripped)
+            except (ValueError, SyntaxError):
+                return value
+    return value
+
+
 def _as_mapping(value: Any) -> dict[str, Any]:
+    value = _literal(value)
     if isinstance(value, dict):
         return value
     return {}
@@ -89,15 +103,17 @@ def terms_from_char_positions(text: str, positions: Iterable[Any]) -> list[str]:
 
 def from_toxic_spans_row(row: dict[str, Any]) -> tuple[str, DetectionLabel] | None:
     raw_post = row.get("text_of_post")
-    if not raw_post and isinstance(row.get("text"), str):
-        raw_post = row.get("text")
+    span_field = _literal(row.get("text"))
+    if not raw_post and isinstance(span_field, str):
+        raw_post = span_field
     original = str(raw_post or "")
     if not original.strip():
         return None
-    span_scores = _as_mapping(row.get("text") if not isinstance(row.get("text"), str) else row.get("spans"))
+    span_scores = _as_mapping(span_field if isinstance(span_field, dict) else row.get("spans"))
     terms = [str(term) for term, score in span_scores.items() if float(score or 0) >= 0.5]
     if not terms:
-        terms = terms_from_char_positions(original, row.get("position") or row.get("positions") or [])
+        positions = _literal(row.get("position") or row.get("positions") or [])
+        terms = terms_from_char_positions(original, positions if isinstance(positions, (list, tuple)) else [])
     text = _clean_text(original)
     types = _as_mapping(row.get("type"))
     profane = float(types.get("profane/obscene") or types.get("profane_obscene") or 0)

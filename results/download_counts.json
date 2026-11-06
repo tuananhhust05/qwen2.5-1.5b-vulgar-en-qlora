@@ -1,0 +1,8 @@
+{
+  "toxic_spans": 11006,
+  "hatexplain": 19564,
+  "tweet_eval_offensive": 9460,
+  "labeled": 37554,
+  "vulgar": 17070,
+  "clean": 20484
+}

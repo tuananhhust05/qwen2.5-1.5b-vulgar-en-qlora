@@ -1,0 +1,51 @@
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:44,  7.55it/s]/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+Loading weights:   4%|▍         | 15/338 [00:00<00:04, 75.17it/s]Loading weights:  15%|█▌        | 52/338 [00:00<00:01, 194.83it/s]Loading weights:  26%|██▋       | 89/338 [00:00<00:00, 255.20it/s]Loading weights:  39%|███▉      | 131/338 [00:00<00:00, 310.05it/s]Loading weights:  51%|█████     | 171/338 [00:00<00:00, 332.68it/s]Loading weights:  62%|██████▏   | 208/338 [00:00<00:00, 337.75it/s]Loading weights:  72%|███████▏  | 245/338 [00:00<00:00, 343.10it/s]Loading weights:  84%|████████▍ | 285/338 [00:00<00:00, 359.54it/s]Loading weights:  97%|█████████▋| 327/338 [00:01<00:00, 368.86it/s]Loading weights: 100%|██████████| 338/338 [00:01<00:00, 308.26it/s]
+/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py:468: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+{
+  "examples": 3743,
+  "is_vulgar": {
+    "precision": 0.7694038245219348,
+    "recall": 0.8042328042328042,
+    "f1": 0.7864328830123599,
+    "accuracy": 0.8014961261020572
+  },
+  "severity_macro_f1": 0.5834288520107302,
+  "severity_accuracy": 0.747528720277852,
+  "vulgar_terms": {
+    "precision": 0.6065962491916361,
+    "recall": 0.4373640037301834,
+    "f1": 0.5082633432674072
+  },
+  "ci95": {
+    "is_vulgar_f1": [
+      0.7702663154814164,
+      0.8010019482326747
+    ],
+    "severity_macro_f1": [
+      0.5505386775019443,
+      0.6204427198439073
+    ],
+    "vulgar_terms_f1": [
+      0.4827522935779816,
+      0.531241784243274
+    ]
+  },
+  "parse_failures": 1,
+  "json_valid_rate": 0.9997328346246327,
+  "throughput": {
+    "batch_size": 32,
+    "examples": 3743,
+    "seconds": 899.8620404221583,
+    "examples_per_second": 4.159526496132697,
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "latency": {
+    "batch_size": 1,
+    "requests": 50,
+    "p50_ms": 2253.6472098436207,
+    "p95_ms": 4853.438216028735
+  }
+}
+Wrote results/finetuned_seed43.json

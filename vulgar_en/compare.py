@@ -38,8 +38,8 @@ def compare(config_path: str, adapter_dir: str | None, split_file: str | None, l
             "base": base_report["parse_failures"],
             "finetuned": tuned_report["parse_failures"],
         },
-        "base": {key: value for key, value in base_report.items() if key != "failures"},
-        "finetuned": {key: value for key, value in tuned_report.items() if key != "failures"},
+        "base": {key: value for key, value in base_report.items() if key not in {"failures", "predictions"}},
+        "finetuned": {key: value for key, value in tuned_report.items() if key not in {"failures", "predictions"}},
     }
 
 
@@ -48,7 +48,7 @@ def main() -> None:
     parser.add_argument("--config", default="configs/default.yaml")
     parser.add_argument("--adapter", default=None)
     parser.add_argument("--split", default=None)
-    parser.add_argument("--limit", type=int, default=400)
+    parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--out", default="outputs/compare_base_vs_finetuned.json")
     args = parser.parse_args()
     report = compare(args.config, args.adapter, args.split, args.limit)
