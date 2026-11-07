@@ -1,5 +1,7 @@
 # English Vulgar-Language Detector: QLoRA Fine-Tuning of Qwen2.5-1.5B
 
+A yes/no toxicity score does not tell a moderator how serious a message is or which words caused the flag. This project studies whether a small open LLM can provide all three in one structured answer: whether an English text is vulgar, how severe it is, and which terms are responsible. It fine-tunes a 1.5B-parameter model with QLoRA on a single consumer GPU, using public social-media datasets, and compares the result with zero-shot prompting and classical baselines. The work covers the full path from data to serving: correcting label errors in the source data, building a leakage-safe split, evaluating over multiple seeds, and benchmarking high-throughput inference with vLLM.
+
 QLoRA fine-tuning of [Qwen/Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct) that turns an English text into a structured JSON verdict:
 
 ```json
