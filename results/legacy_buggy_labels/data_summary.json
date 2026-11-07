@@ -1,0 +1,53 @@
+{
+  "stats": {
+    "label_conflicts_dropped": 10
+  },
+  "splits": {
+    "data/processed/train.jsonl": {
+      "rows": 29986,
+      "vulgar": 13756,
+      "by_source": {
+        "hatexplain": 14854,
+        "seed_bank": 480,
+        "toxic_spans": 8076,
+        "tweet_eval_offensive": 6576
+      },
+      "by_severity": {
+        "explicit": 4817,
+        "mild": 4415,
+        "none": 16230,
+        "strong": 4524
+      }
+    },
+    "data/processed/eval.jsonl": {
+      "rows": 3688,
+      "vulgar": 1676,
+      "by_source": {
+        "hatexplain": 1857,
+        "toxic_spans": 1009,
+        "tweet_eval_offensive": 822
+      },
+      "by_severity": {
+        "explicit": 607,
+        "mild": 537,
+        "none": 2012,
+        "strong": 532
+      }
+    },
+    "data/processed/test.jsonl": {
+      "rows": 3689,
+      "vulgar": 1677,
+      "by_source": {
+        "hatexplain": 1857,
+        "toxic_spans": 1010,
+        "tweet_eval_offensive": 822
+      },
+      "by_severity": {
+        "explicit": 613,
+        "mild": 538,
+        "none": 2012,
+        "strong": 526
+      }
+    }
+  }
+}

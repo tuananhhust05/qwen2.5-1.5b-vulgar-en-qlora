@@ -1,0 +1,49 @@
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:38,  8.81it/s]Loading weights:   8%|▊         | 26/338 [00:00<00:02, 142.09it/s]Loading weights:  15%|█▌        | 51/338 [00:00<00:01, 189.49it/s]Loading weights:  26%|██▌       | 88/338 [00:00<00:01, 239.38it/s]Loading weights:  37%|███▋      | 124/338 [00:00<00:00, 269.12it/s]Loading weights:  47%|████▋     | 159/338 [00:00<00:00, 287.56it/s]Loading weights:  56%|█████▌    | 188/338 [00:00<00:00, 279.38it/s]Loading weights:  65%|██████▍   | 219/338 [00:00<00:00, 275.36it/s]Loading weights:  76%|███████▋  | 258/338 [00:00<00:00, 308.38it/s]Loading weights:  87%|████████▋ | 294/338 [00:01<00:00, 323.38it/s]Loading weights:  97%|█████████▋| 327/338 [00:01<00:00, 324.21it/s]Loading weights: 100%|██████████| 338/338 [00:01<00:00, 277.88it/s]
+{
+  "examples": 3743,
+  "is_vulgar": {
+    "precision": 0.8076178179470627,
+    "recall": 0.7354497354497355,
+    "f1": 0.7698461538461538,
+    "accuracy": 0.8001602992252204
+  },
+  "severity_macro_f1": 0.5385402374588409,
+  "severity_accuracy": 0.7461928934010152,
+  "vulgar_terms": {
+    "precision": 0.641289117234937,
+    "recall": 0.4267951507615791,
+    "f1": 0.5125046659201195
+  },
+  "ci95": {
+    "is_vulgar_f1": [
+      0.7518891687657431,
+      0.7853988813659111
+    ],
+    "severity_macro_f1": [
+      0.526875274468471,
+      0.5502213699064558
+    ],
+    "vulgar_terms_f1": [
+      0.4868877747782491,
+      0.5384540781689459
+    ]
+  },
+  "weights": "bf16, LoRA merged",
+  "parse_failures": 1,
+  "json_valid_rate": 0.9997328346246327,
+  "throughput": {
+    "batch_size": 64,
+    "examples": 3743,
+    "seconds": 185.1738699269481,
+    "examples_per_second": 20.213435089284626,
+    "peak_vram_gb": 4.703641891479492,
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "latency": {
+    "batch_size": 1,
+    "requests": 50,
+    "p50_ms": 813.2026139646769,
+    "p95_ms": 1581.3303370960057
+  }
+}
+Wrote results/bench_seed42_bf16_merged.json

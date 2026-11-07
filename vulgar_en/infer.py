@@ -24,7 +24,7 @@ def load_tokenizer(model_name: str, adapter_dir: str | None) -> AutoTokenizer:
 
 
 def load_detector(
-    config: AppConfig, adapter_dir: str, use_adapter: bool = True
+    config: AppConfig, adapter_dir: str, use_adapter: bool = True, merge: bool = False
 ) -> tuple[AutoTokenizer, torch.nn.Module]:
     runtime = probe_nvidia()
     dtype = torch_dtype(runtime)
@@ -37,7 +37,8 @@ def load_detector(
         "attn_implementation": attention,
         "device_map": "auto" if runtime.cuda_available else None,
     }
-    if runtime.cuda_available and config.model.use_qlora:
+    # merge=True: bf16 base with the LoRA weights folded in (deployment path, no 4-bit kernels)
+    if runtime.cuda_available and config.model.use_qlora and not merge:
         model_kwargs["quantization_config"] = BitsAndBytesConfig(
             load_in_4bit=True,
             bnb_4bit_quant_type=config.model.bnb_4bit_quant_type,
@@ -45,11 +46,15 @@ def load_detector(
             bnb_4bit_compute_dtype=dtype,
         )
     else:
-        model_kwargs["torch_dtype"] = dtype if runtime.cuda_available else torch.float32
+        model_kwargs["dtype"] = dtype if runtime.cuda_available else torch.float32
     base = AutoModelForCausalLM.from_pretrained(**model_kwargs)
     adapter_path = Path(adapter_dir)
-    if use_adapter and (adapter_path / "adapter_config.json").exists():
+    if use_adapter:
+        if not (adapter_path / "adapter_config.json").exists():
+            raise FileNotFoundError(f"No LoRA adapter at {adapter_path} (use --no-adapter for the base model)")
         model = PeftModel.from_pretrained(base, str(adapter_path))
+        if merge:
+            model = model.merge_and_unload()
     else:
         model = base
     model.eval()
@@ -75,6 +80,32 @@ def generate_json(tokenizer: AutoTokenizer, model: torch.nn.Module, text: str, c
         )
     generated = output_ids[0, inputs["input_ids"].shape[-1] :]
     return tokenizer.decode(generated, skip_special_tokens=True).strip()
+
+
+def generate_json_batch(
+    tokenizer: AutoTokenizer, model: torch.nn.Module, texts: list[str], config: AppConfig
+) -> list[str]:
+    """Greedy batched generation (tokenizer must use left padding)."""
+    prompts = [
+        tokenizer.apply_chat_template(build_messages(text), tokenize=False, add_generation_prompt=True)
+        for text in texts
+    ]
+    inputs = tokenizer(prompts, return_tensors="pt", padding=True)
+    device = next(model.parameters()).device
+    inputs = {key: value.to(device) for key, value in inputs.items()}
+    with torch.inference_mode():
+        output_ids = model.generate(
+            **inputs,
+            max_new_tokens=config.infer.max_new_tokens,
+            do_sample=False,
+            temperature=None,
+            top_p=None,
+            top_k=None,
+            eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.pad_token_id,
+        )
+    generated = output_ids[:, inputs["input_ids"].shape[-1] :]
+    return [item.strip() for item in tokenizer.batch_decode(generated, skip_special_tokens=True)]
 
 
 def detect(tokenizer: AutoTokenizer, model: torch.nn.Module, text: str, config: AppConfig) -> DetectionLabel:

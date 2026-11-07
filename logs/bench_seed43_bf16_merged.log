@@ -1,0 +1,49 @@
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:38,  8.79it/s]Loading weights:   8%|▊         | 28/338 [00:00<00:02, 147.60it/s]Loading weights:  16%|█▌        | 53/338 [00:00<00:01, 189.48it/s]Loading weights:  26%|██▌       | 87/338 [00:00<00:01, 237.99it/s]Loading weights:  33%|███▎      | 112/338 [00:00<00:00, 240.03it/s]Loading weights:  41%|████      | 137/338 [00:00<00:00, 242.35it/s]Loading weights:  51%|█████     | 171/338 [00:00<00:00, 253.80it/s]Loading weights:  58%|█████▊    | 197/338 [00:00<00:00, 251.65it/s]Loading weights:  68%|██████▊   | 231/338 [00:00<00:00, 269.41it/s]Loading weights:  76%|███████▋  | 258/338 [00:01<00:00, 257.89it/s]Loading weights:  86%|████████▌ | 291/338 [00:01<00:00, 272.22it/s]Loading weights:  94%|█████████▍| 319/338 [00:01<00:00, 263.49it/s]Loading weights: 100%|██████████| 338/338 [00:01<00:00, 247.47it/s]
+{
+  "examples": 3743,
+  "is_vulgar": {
+    "precision": 0.7738161559888579,
+    "recall": 0.8165784832451499,
+    "f1": 0.7946224256292906,
+    "accuracy": 0.808175260486241
+  },
+  "severity_macro_f1": 0.5727641447927077,
+  "severity_accuracy": 0.7488645471546888,
+  "vulgar_terms": {
+    "precision": 0.6117063492063493,
+    "recall": 0.47917314267951505,
+    "f1": 0.5373888792051595
+  },
+  "ci95": {
+    "is_vulgar_f1": [
+      0.7790526625478081,
+      0.8094701240135288
+    ],
+    "severity_macro_f1": [
+      0.5445847344283368,
+      0.6070164520353166
+    ],
+    "vulgar_terms_f1": [
+      0.5122745270567531,
+      0.5613528212100611
+    ]
+  },
+  "weights": "bf16, LoRA merged",
+  "parse_failures": 3,
+  "json_valid_rate": 0.999198503873898,
+  "throughput": {
+    "batch_size": 64,
+    "examples": 3743,
+    "seconds": 176.1544933859259,
+    "examples_per_second": 21.248393543954027,
+    "peak_vram_gb": 4.703641891479492,
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "latency": {
+    "batch_size": 1,
+    "requests": 50,
+    "p50_ms": 854.6108941081911,
+    "p95_ms": 2561.476885108277
+  }
+}
+Wrote results/bench_seed43_bf16_merged.json

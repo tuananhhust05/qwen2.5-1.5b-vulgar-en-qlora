@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import dataclasses
 from pathlib import Path
 
 import torch
@@ -11,9 +12,11 @@ from vulgar_en.config import load_config
 from vulgar_en.nvidia import configure_nvidia_runtime, probe_nvidia, resolve_attention, torch_dtype
 
 
-def merge_adapter(config_path: str, adapter_dir: str | None, output_dir: str) -> None:
+def merge_adapter(config_path: str, adapter_dir: str | None, output_dir: str, model_name: str | None = None) -> None:
     configure_nvidia_runtime()
     config = load_config(config_path)
+    if model_name:
+        config = dataclasses.replace(config, model=dataclasses.replace(config.model, name=model_name))
     runtime = probe_nvidia()
     dtype = torch_dtype(runtime) if runtime.cuda_available else torch.float32
     attention = resolve_attention(config.model.attn_implementation)
@@ -21,7 +24,7 @@ def merge_adapter(config_path: str, adapter_dir: str | None, output_dir: str) ->
     tokenizer = AutoTokenizer.from_pretrained(config.model.name, use_fast=True, trust_remote_code=True)
     base = AutoModelForCausalLM.from_pretrained(
         config.model.name,
-        torch_dtype=dtype,
+        dtype=dtype,
         trust_remote_code=True,
         attn_implementation=attention,
         device_map="auto" if runtime.cuda_available else None,
@@ -38,10 +41,11 @@ def merge_adapter(config_path: str, adapter_dir: str | None, output_dir: str) ->
 def main() -> None:
     parser = argparse.ArgumentParser(description="Merge LoRA adapter into base weights")
     parser.add_argument("--config", default="configs/default.yaml")
+    parser.add_argument("--model", default=None, help="override model.name")
     parser.add_argument("--adapter", default=None)
     parser.add_argument("--out", default="outputs/vulgar-en-merged")
     args = parser.parse_args()
-    merge_adapter(args.config, args.adapter, args.out)
+    merge_adapter(args.config, args.adapter, args.out, args.model)
 
 
 if __name__ == "__main__":

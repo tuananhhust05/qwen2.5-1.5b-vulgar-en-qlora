@@ -1,0 +1,198 @@
+{
+  "lexicon": {
+    "is_vulgar_accuracy": 0.4643334223884585,
+    "is_vulgar_precision": 0.4589411129119395,
+    "is_vulgar_recall": 0.9988242210464433,
+    "is_vulgar_f1": 0.628909864889876,
+    "severity_macro_f1": 0.14794081547285196,
+    "vulgar_terms_f1": 0.24778210861091848
+  },
+  "tfidf_lr": {
+    "is_vulgar_accuracy": 0.7651616350520972,
+    "is_vulgar_precision": 0.7280799112097669,
+    "is_vulgar_recall": 0.7713109935332157,
+    "is_vulgar_f1": 0.7490722238081644,
+    "severity_macro_f1": 0.5442400181621749,
+    "vulgar_terms_f1": 0.341609482220836
+  },
+  "base_zero_shot": {
+    "is_vulgar_accuracy": 0.5762757146673791,
+    "is_vulgar_precision": 0.5184946928272757,
+    "is_vulgar_recall": 0.9476778365667254,
+    "is_vulgar_f1": 0.6702702702702703,
+    "severity_macro_f1": 0.21805122152120004,
+    "vulgar_terms_f1": 0.24673047051159996,
+    "json_valid_rate": 0.9925193694897141,
+    "ci95": {
+      "is_vulgar_f1": [
+        0.654424040066778,
+        0.6865793780687398
+      ],
+      "severity_macro_f1": [
+        0.20963052424405082,
+        0.22713829849826778
+      ],
+      "vulgar_terms_f1": [
+        0.2356064549713691,
+        0.2583880836551482
+      ]
+    },
+    "examples": 3743
+  },
+  "finetuned_runs": {
+    "42": {
+      "is_vulgar_accuracy": 0.7985573069730163,
+      "is_vulgar_precision": 0.8084690553745928,
+      "is_vulgar_recall": 0.7295708406819518,
+      "is_vulgar_f1": 0.7669962917181706,
+      "severity_macro_f1": 0.5657034554123506,
+      "vulgar_terms_f1": 0.4889663182346109,
+      "json_valid_rate": 0.9997328346246327,
+      "ci95": {
+        "is_vulgar_f1": [
+          0.7495207667731629,
+          0.7824808935920047
+        ],
+        "severity_macro_f1": [
+          0.5370833534467537,
+          0.599612963901941
+        ],
+        "vulgar_terms_f1": [
+          0.46246585664500334,
+          0.5133056316859694
+        ]
+      },
+      "throughput": {
+        "batch_size": 32,
+        "examples": 3743,
+        "seconds": 866.5901968937833,
+        "examples_per_second": 4.319227258070142,
+        "gpu": "NVIDIA GeForce RTX 4090"
+      },
+      "latency": {
+        "batch_size": 1,
+        "requests": 50,
+        "p50_ms": 2271.8601159285754,
+        "p95_ms": 3560.405671130866
+      },
+      "by_source": {
+        "hatexplain": {
+          "is_vulgar_accuracy": 0.7913322632423756,
+          "is_vulgar_precision": 0.8711595639246779,
+          "is_vulgar_recall": 0.771729587357331,
+          "is_vulgar_f1": 0.8184357541899442,
+          "severity_macro_f1": 0.5058005532695593,
+          "vulgar_terms_f1": 0.47716621253406
+        },
+        "toxic_spans": {
+          "is_vulgar_accuracy": 0.649325626204239,
+          "is_vulgar_precision": 0.688212927756654,
+          "is_vulgar_recall": 0.6441281138790036,
+          "is_vulgar_f1": 0.6654411764705882,
+          "severity_macro_f1": 0.39729293180147307,
+          "vulgar_terms_f1": 0.5825410544511668
+        },
+        "tweet_eval_offensive": {
+          "is_vulgar_accuracy": 1.0,
+          "is_vulgar_precision": 0.0,
+          "is_vulgar_recall": 0.0,
+          "is_vulgar_f1": 0.0,
+          "severity_macro_f1": 0.25,
+          "vulgar_terms_f1": 0.0
+        }
+      }
+    },
+    "43": {
+      "is_vulgar_accuracy": 0.8014961261020572,
+      "is_vulgar_precision": 0.7694038245219348,
+      "is_vulgar_recall": 0.8042328042328042,
+      "is_vulgar_f1": 0.7864328830123599,
+      "severity_macro_f1": 0.5834288520107302,
+      "vulgar_terms_f1": 0.5082633432674072,
+      "json_valid_rate": 0.9997328346246327,
+      "ci95": {
+        "is_vulgar_f1": [
+          0.7702663154814164,
+          0.8010019482326747
+        ],
+        "severity_macro_f1": [
+          0.5505386775019443,
+          0.6204427198439073
+        ],
+        "vulgar_terms_f1": [
+          0.4827522935779816,
+          0.531241784243274
+        ]
+      },
+      "throughput": {
+        "batch_size": 32,
+        "examples": 3743,
+        "seconds": 899.8620404221583,
+        "examples_per_second": 4.159526496132697,
+        "gpu": "NVIDIA GeForce RTX 4090"
+      },
+      "latency": {
+        "batch_size": 1,
+        "requests": 50,
+        "p50_ms": 2253.6472098436207,
+        "p95_ms": 4853.438216028735
+      },
+      "by_source": {
+        "hatexplain": {
+          "is_vulgar_accuracy": 0.7982878544676297,
+          "is_vulgar_precision": 0.8444846292947559,
+          "is_vulgar_recall": 0.820017559262511,
+          "is_vulgar_f1": 0.8320712694877506,
+          "severity_macro_f1": 0.5161303611156923,
+          "vulgar_terms_f1": 0.49569848422777557
+        },
+        "toxic_spans": {
+          "is_vulgar_accuracy": 0.6473988439306358,
+          "is_vulgar_precision": 0.6458333333333334,
+          "is_vulgar_recall": 0.7722419928825622,
+          "is_vulgar_f1": 0.7034035656401945,
+          "severity_macro_f1": 0.4179288488963663,
+          "vulgar_terms_f1": 0.6019862490450727
+        },
+        "tweet_eval_offensive": {
+          "is_vulgar_accuracy": 1.0,
+          "is_vulgar_precision": 0.0,
+          "is_vulgar_recall": 0.0,
+          "is_vulgar_f1": 0.0,
+          "severity_macro_f1": 0.25,
+          "vulgar_terms_f1": 0.0
+        }
+      }
+    }
+  },
+  "finetuned_mean_std": {
+    "is_vulgar_accuracy": {
+      "mean": 0.8000267165375368,
+      "std": 0.002078058934825582
+    },
+    "is_vulgar_precision": {
+      "mean": 0.7889364399482638,
+      "std": 0.02762328964453241
+    },
+    "is_vulgar_recall": {
+      "mean": 0.766901822457378,
+      "std": 0.05279398072351059
+    },
+    "is_vulgar_f1": {
+      "mean": 0.7767145873652652,
+      "std": 0.01374374550727266
+    },
+    "severity_macro_f1": {
+      "mean": 0.5745661537115404,
+      "std": 0.012533748133935237
+    },
+    "vulgar_terms_f1": {
+      "mean": 0.49861483075100904,
+      "std": 0.013645057257416816
+    },
+    "json_valid_rate": {
+      "mean": 0.9997328346246327,
+      "std": 0.0
+    }
+  }
+}

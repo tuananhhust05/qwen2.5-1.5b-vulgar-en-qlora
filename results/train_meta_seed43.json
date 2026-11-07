@@ -1,0 +1,55 @@
+{
+  "model": "/dev/shm/cvft/models/Qwen2.5-1.5B-Instruct",
+  "qlora": true,
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ]
+  },
+  "train": {
+    "output_dir": "outputs/vulgar-en-qlora-seed43",
+    "num_train_epochs": 3.0,
+    "per_device_train_batch_size": 16,
+    "per_device_eval_batch_size": 16,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 0.0002,
+    "warmup_ratio": 0.05,
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "cosine",
+    "logging_steps": 10,
+    "save_strategy": "epoch",
+    "eval_strategy": "epoch",
+    "save_total_limit": 2,
+    "seed": 43,
+    "gradient_checkpointing": true,
+    "optim": "paged_adamw_8bit",
+    "max_grad_norm": 1.0,
+    "dataloader_num_workers": 4,
+    "report_to": "none",
+    "group_by_length": true
+  },
+  "train_examples": 30419,
+  "eval_examples": 3742,
+  "trainable_params": 18464768,
+  "total_params": 1562179072,
+  "train_seconds": 3597.644087069202,
+  "train_loss": 0.0533172753448554,
+  "best_checkpoint": "outputs/vulgar-en-qlora-seed43/checkpoint-3804",
+  "best_eval_loss": 0.05654863640666008,
+  "peak_vram_gb": 3.416594982147217,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "loss_mask_check": {
+    "sequence_tokens": 178,
+    "supervised_tokens": 24,
+    "supervised_text": "{\"is_vulgar\": false, \"severity\": \"none\", \"vulgar_terms\": []}<|im_end|>\n"
+  }
+}

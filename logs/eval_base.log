@@ -1,0 +1,51 @@
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<00:44,  7.52it/s]/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+Loading weights:   4%|▍         | 15/338 [00:00<00:04, 74.63it/s]Loading weights:  15%|█▌        | 52/338 [00:00<00:01, 196.08it/s]Loading weights:  26%|██▋       | 89/338 [00:00<00:00, 257.83it/s]Loading weights:  39%|███▉      | 133/338 [00:00<00:00, 320.17it/s]Loading weights:  51%|█████     | 171/338 [00:00<00:00, 336.31it/s]Loading weights:  62%|██████▏   | 208/338 [00:00<00:00, 343.05it/s]Loading weights:  72%|███████▏  | 245/338 [00:00<00:00, 348.10it/s]Loading weights:  85%|████████▍ | 287/338 [00:00<00:00, 369.35it/s]Loading weights:  97%|█████████▋| 327/338 [00:01<00:00, 370.91it/s]Loading weights: 100%|██████████| 338/338 [00:01<00:00, 311.74it/s]
+/usr/local/lib/python3.12/dist-packages/bitsandbytes/backends/cuda/ops.py:468: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+{
+  "examples": 3743,
+  "is_vulgar": {
+    "precision": 0.5184946928272757,
+    "recall": 0.9476778365667254,
+    "f1": 0.6702702702702703,
+    "accuracy": 0.5762757146673791
+  },
+  "severity_macro_f1": 0.21805122152120004,
+  "severity_accuracy": 0.4028853860539674,
+  "vulgar_terms": {
+    "precision": 0.1820601937439917,
+    "recall": 0.38265464718682,
+    "f1": 0.24673047051159996
+  },
+  "ci95": {
+    "is_vulgar_f1": [
+      0.654424040066778,
+      0.6865793780687398
+    ],
+    "severity_macro_f1": [
+      0.20963052424405082,
+      0.22713829849826778
+    ],
+    "vulgar_terms_f1": [
+      0.2356064549713691,
+      0.2583880836551482
+    ]
+  },
+  "parse_failures": 28,
+  "json_valid_rate": 0.9925193694897141,
+  "throughput": {
+    "batch_size": 32,
+    "examples": 3743,
+    "seconds": 836.698942221934,
+    "examples_per_second": 4.473532606674637,
+    "gpu": "NVIDIA GeForce RTX 4090"
+  },
+  "latency": {
+    "batch_size": 1,
+    "requests": 50,
+    "p50_ms": 2778.07452599518,
+    "p95_ms": 4518.494558986276
+  }
+}
+Wrote results/base_zero_shot.json
